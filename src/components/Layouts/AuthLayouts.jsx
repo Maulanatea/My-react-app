@@ -34,11 +34,11 @@ const AuthLayouts = (props) => {
     )
 }
 
-const Navigation =({type}) => {
+const Navigation =({ type }) => {
     if (type ==="login") {
         return(
             <p className="text-sm mt-5 text-center">
-                Don't have an account?{" "}
+                Dont have an account?{" "}
                 <Link to="/register" className="text-blue-600 font-bold">
                 Register
                 </Link>
