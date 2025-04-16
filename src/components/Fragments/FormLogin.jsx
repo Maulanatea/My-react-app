@@ -2,8 +2,14 @@ import Button from "../Elements/Button"
 import InputForm from "../Elements/Input"
 
 const FormLogin = () => {
+  const hadndleLogin = (event) => {
+    event.preventDefault()
+    localStorage.setItem("email", event.target.email.value)
+    localStorage.setItem("password", event.target.password.value)
+    window.location.href = "/products"
+  }
     return(
-        <form action="">
+        <form onSubmit={hadndleLogin}>
           <InputForm
             text="Email"
             name="email"
@@ -16,7 +22,7 @@ const FormLogin = () => {
             type="password"
             placeholder="******"
           />
-          <Button variant="bg-blue-600 w-full" text="Login" />
+          <Button className="bg-blue-600 w-full" text="Login" type={"submit"}/>
         </form>
     )
 }
