@@ -3,6 +3,7 @@
 import { Fragment, useState } from "react";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProduct"
+import { useEffect } from "react";
 
 const products = [
     {
@@ -31,12 +32,22 @@ const products = [
 const email = localStorage.getItem("email")
 
 const ProductsPage = () => {
-    const [cart, setCart] = useState([
-        {
-            id: 1,
-            qty : 1,
-        }
-    ])
+    const [cart, setCart] = useState([])
+    const [totalPrice, setTotalPrice] = useState(0)
+    useEffect(() => {
+      setCart(JSON.parse(localStorage.getItem("cart")) || [])
+    }, [])
+
+    useEffect(() => {
+      if(cart.length > 0) {
+        const sum = cart.reduce((acc, item) => {
+          const product = products.find((product) => product.id === item.id);
+          return acc + (item.qty * product.price);
+        }, 0);
+        setTotalPrice(sum);
+        localStorage.setItem("cart", JSON.stringify(cart))
+      }
+    }, [cart])
 
     const hadndleLogout = () => {
         localStorage.removeItem("email")
@@ -98,6 +109,13 @@ const ProductsPage = () => {
                         </tr>
                       )
                     })}
+                    <br/>
+                    <tr className="font-bold text-blue-600">
+                      <td colSpan={3}>Total Price</td>
+                      <td>
+                      Rp{" "}{totalPrice.toLocaleString("id-ID", {styles:"currency", currency:"IDR"})}
+                      </td>
+                    </tr>
                 </tbody>
             </table>
             </div>
