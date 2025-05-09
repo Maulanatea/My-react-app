@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProduct"
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const products = [
     {
@@ -65,6 +66,15 @@ const ProductsPage = () => {
         }
     }
 
+    //UseRef
+    // const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || [])
+
+    // const handleAddToCartRef = (id) => {
+    //   cartRef.current = [...cartRef.current, {id, qty: 1}]
+    //   localStorage.setItem("cart",JSON.stringify(cartRef.current))
+    // }
+
+
     return (
         <Fragment>
         <div className="flex justify-end h-20 bg-blue-600 text-white items-center px-10">
@@ -116,6 +126,7 @@ const ProductsPage = () => {
                       Rp{" "}{totalPrice.toLocaleString("id-ID", {styles:"currency", currency:"IDR"})}
                       </td>
                     </tr>
+                  
                 </tbody>
             </table>
             </div>
