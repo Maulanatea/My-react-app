@@ -74,6 +74,15 @@ const ProductsPage = () => {
     //   localStorage.setItem("cart",JSON.stringify(cartRef.current))
     // }
 
+    const totalPriceRef = useRef(null)
+    
+    useEffect(() => {
+      if (cart.length > 0) {
+        totalPriceRef.current.style.display = "table-row"
+      } else {
+        totalPriceRef.current.style.display = "none"
+      }
+    })
 
     return (
         <Fragment>
@@ -119,8 +128,7 @@ const ProductsPage = () => {
                         </tr>
                       )
                     })}
-                    <br/>
-                    <tr className="font-bold text-blue-600">
+                    <tr ref={totalPriceRef} className="font-bold text-blue-600">
                       <td colSpan={3}>Total Price</td>
                       <td>
                       Rp{" "}{totalPrice.toLocaleString("id-ID", {styles:"currency", currency:"IDR"})}

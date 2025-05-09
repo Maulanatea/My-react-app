@@ -61,7 +61,7 @@ const Footer = (props) => {
 };
 
 Footer.propTypes = {
-    price: PropTypes.string,
+    price: PropTypes.number,
     handleAddToCart: PropTypes.func,
     id: PropTypes.number,
   };
