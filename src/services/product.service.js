@@ -5,8 +5,8 @@ export const getProducts = (callback) => {
     .then((res) => {
       callback(res.data)
     })
-    .catch((err) => {
-      console.log(err)
+    .catch((error) => {
+      console.log(error)
     })
     
 };
